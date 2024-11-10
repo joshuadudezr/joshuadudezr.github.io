@@ -1,1 +1,27 @@
 /* Add styles here */
+h1 { 
+  color: blue; 
+  font-size: 24px; 
+}
+.typed-text { 
+  width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing 3s steps(30, end) forwards; 
+}
+.typed-text-2 { 
+  width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing2 3s steps(30, end) forwards; 
+}
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+@keyframes typing2 {
+  0% { width: 0; } 
+  50% { width: 0; } /* No change in width for the first 3 seconds (50% of 6s) */
+  100% { width: 100%; }
+}
+
