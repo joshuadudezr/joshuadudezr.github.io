@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        #greeting {
+            font-size: 3em;
+            color: #333;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        #name {
+            font-size: 2em;
+            color: #555;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        #main-content {
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 800px;
+            margin-top: 50px;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .image-placeholder {
+            background-color: #e0e0e0;
+            width: 100%;
+            height: 200px;
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="greeting">Hello!</div>
+        <div id="name">I'm Josh</div>
+    </div>
+
+    <div id="main-content">
+        <h1>Welcome to My Website</h1>
+        <p>Im josh and i do coding sometimes, im dont know what to say here but i will think of someting soon, i hope this web page works</p>
+        <p>Hello!</p>
+        <div class="image-placeholder">
+            <p>Image Placeholder</p>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const greeting = document.getElementById('greeting');
+            const name = document.getElementById('name');
+            const mainContent = document.getElementById('main-content');
+
+            // Show greeting and fade it out
+            setTimeout(function() {
+                greeting.style.opacity = '1';
+            }, 100); // Small delay to make sure page loads correctly
+
+            // After 2 seconds, slide "I'm Josh" in
+            setTimeout(function() {
+                greeting.style.opacity = '0'; // Hide greeting text
+                name.style.opacity = '1';
+                name.style.transform = 'translateX(0)';
+            }, 2000);
+
+            // After 4 seconds, show the main content
+            setTimeout(function() {
+                name.style.opacity = '0'; // Hide "I'm Josh" text
+                mainContent.style.opacity = '1';
+            }, 4000);
+        };
+    </script>
+</body>
+</html>
