@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blask! - Your iOS Browser</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <style>
+        body {
+            font-family: 'Helvetica Neue', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: opacity 0.5s;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+            color: #6200ea;
+            transition: opacity 0.5s;
+        }
+        .features {
+            display: none; /* Hidden initially */
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 20px;
+            text-align: left;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+        }
+        h2 {
+            color: #6200ea;
+            margin-bottom: 20px;
+        }
+        .feature {
+            margin: 20px 0;
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+        .feature:last-child {
+            border-bottom: none;
+        }
+        footer {
+            position: absolute;
+            bottom: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+        .loading {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #777;
+        }
+        .dots {
+            animation: dot-flashing 1s infinite linear;
+        }
+        @keyframes dot-flashing {
+            0%, 20% {
+                opacity: 1;
+            }
+            40% {
+                opacity: 0;
+            }
+            60% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            // Display the first message
+            document.getElementById('message').innerText = "Imagine a Browser";
+
+            // Change the message after 1 second
+            setTimeout(function() {
+                document.getElementById('message').innerText = "Made for You, Not for Your Data";
+            }, 1000);
+
+            // Show the loading message after 2 seconds
+            setTimeout(function() {
+                document.getElementById('message').style.display = 'none'; // Hide the message
+                document.querySelector('.loading').style.display = 'block'; // Show loading message
+            }, 2000);
+
+            // Show features after 4 seconds
+            setTimeout(function() {
+                document.querySelector('.loading').style.display = 'none'; // Hide loading message
+                document.querySelector('.features').style.display = 'block'; // Show features
+            }, 4000);
+        };
+    </script>
+</head>
+<body>
+    <h1 id="message"></h1>
+    <div class="loading" style="display: none;">
+        <p>We are still making it btw <span class="dots">...</span></p>
+    </div>
+    <div class="features">
+        <h2>Why Choose Blask!</h2>
+        <div class="feature">
+            <h3>Privacy First</h3>
+            <p>Blask! is designed to keep your information private. We don’t track your browsing history or sell your data to advertisers.</p>
+        </div>
+        <div class="feature">
+            <h3>Speed and Efficiency</h3>
+            <p>Experience lightning-fast browsing with optimized performance that saves you time and data.</p>
+        </div>
+        <div class="feature">
+            <h3>User-Centric Design</h3>
+            <p>Our clean and intuitive interface is designed for ease of use, putting you in control of your browsing experience.</p>
+        </div>
+        <div class="feature">
+            <h3>Customizable Features</h3>
+            <p>Tailor Blask! to fit your needs with a variety of customizable settings that enhance your browsing experience.</p>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Blask! All rights reserved.</p>
+    </footer>
+</body>
+</html>
