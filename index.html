@@ -59,6 +59,31 @@
       height: auto;
       margin-top: 15px;
     }
+
+    /* New section for text next to "This is Joshua" */
+    .intro-container {
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .intro-text {
+      color: #FFFF00;
+      font-size: 20px;
+      margin-right: 20px;
+    }
+
+    .intro-placeholder {
+      color: #aaa;
+      font-size: 16px;
+      max-width: 400px;
+    }
+
+    .intro-image {
+      width: 50px;
+      height: 50px;
+      margin-left: 20px;
+    }
   </style>
 </head>
 <body>
@@ -73,14 +98,14 @@
   <div class="balcony">
     <h2>about me</h2>
     <p>I do stuff.</p>
-  
   </div>
 
-  <!-- Additional content -->
-  <p>what you looking at man?</p>
-
-  <img src="Logo.png" alt="Joshua's Logo and php on discord too and i thoght it was cool so i put it here haha i want to make this text long idk why so there you do i can make it so long you cant even read it i mean i dont think that anyone is going to read this long of a text put if you did then you wasted your time lol" height="100" width="100" />
-  <h4 style="color: #FFFF00;">This is Joshua</h4>
+  <!-- Additional content with new text next to "This is Joshua" -->
+  <div class="intro-container">
+    <h4 class="intro-text">This is Joshua</h4>
+    <p class="intro-placeholder">Here's some placeholder text! You can add anything you want here, like a brief description about yourself, a fun fact, or even a quote that you like. It's your space to personalize!</p>
+    <img class="intro-image" src="Logo.png" alt="Joshua's Logo" />
+  </div>
 
   <h1>projects</h1>
 
