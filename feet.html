@@ -7,40 +7,104 @@
     <title>Feet in Locker?</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f8ff;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f0f8ff, #cfe9f7);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
             margin: 0;
-            text-align: center;
+            padding: 20px;
+            color: #2c3e50;
         }
 
         h1 {
-            color: #333;
-            font-size: 2.5rem;
-            margin-bottom: 20px;
+            font-size: 3.5rem;
+            font-weight: bold;
+            text-align: center;
+            color: #2980b9;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        p {
+            color: #34495e;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            max-width: 600px;
+            text-align: center;
+            animation: slideUp 1s ease-in-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        p a {
+            color: #e74c3c;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        p a:hover {
+            text-decoration: underline;
         }
 
         a button {
-            background-color: #ff4757;
+            background-color: #e74c3c;
             color: white;
             border: none;
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            border-radius: 10px;
+            padding: 18px 40px;
+            font-size: 1.4rem;
+            border-radius: 12px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         a button:hover {
-            background-color: #e8415f;
+            background-color: #c0392b;
+            transform: translateY(-4px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
         }
 
-        a {
+        .footer {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            position: fixed;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            opacity: 0.7;
+        }
+
+        .footer a {
+            color: #2980b9;
             text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -49,5 +113,12 @@
     <a href="https://forms.gle/N4uobTMt7cjb9DVi7">
         <button>I DO NOT WANT FEET!</button>
     </a>
+
+    <p>Ello! I'm Josh, and I coded this. If you want to email me, my email is <a href="mailto:jr159519@apps.matsuk12.us">jr159519@apps.matsuk12.us</a>.</p>
+
+    <div class="footer">
+        <p>Made with love by Josh | <a href="mailto:jr159519@apps.matsuk12.us">Email me</a></p>
+    </div>
 </body>
-<p>Hello! Im josh and I coded this, if you want to email me my email is jr159519@apps.matsuk12.us</p>
+</html>
+
