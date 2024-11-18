@@ -19,6 +19,7 @@
             font-family: Arial, sans-serif;
             font-size: 2rem;
             text-align: center;
+            position: relative;
         }
         #intro {
             display: block;
@@ -33,11 +34,19 @@
             width: 100%;
             height: 100%;
         }
+        #footer {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 0.8rem;
+            color: lightgray;
+        }
     </style>
 </head>
 <body>
     <div id="intro">
-        <div id="text1">The teachers tryed to stop us</div>
+        <div id="text1">The teachers tried to stop us</div>
     </div>
     <div id="iframeContainer">
         <iframe src="https://bonkisback.io"></iframe>
@@ -57,6 +66,11 @@
             document.getElementById('iframeContainer').style.display = 'block';
         }, 7000);
     </script>
+
+    <!-- Fine Print -->
+    <div id="footer">
+        <p>Bonk Leagues is in no way affiliated with bonk.io, multiplayer.gg or Chaz, it's a website made to unblock Bonk for all.</p>
+    </div>
 </body>
 </html>
 
