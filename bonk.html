@@ -28,7 +28,6 @@
             display: none;
             width: 100%;
             height: 100%;
-            position: relative;
         }
         iframe {
             border: none;
@@ -62,32 +61,8 @@
         #popup button:hover {
             background-color: #666;
         }
-        #shadowButton {
-            position: fixed;
-            top: 20px;
-            left: 20px;
+        #closeBtn {
             background-color: #ff5555;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 10px;
-            font-size: 1rem;
-            cursor: pointer;
-            z-index: 10;
-        }
-        #freezeOverlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 20;
-            color: white;
-            font-size: 1.5rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
     </style>
 </head>
@@ -99,31 +74,11 @@
         <iframe src="https://bonkisback.io"></iframe>
     </div>
 
-    <!-- YouTube Video -->
-    <div id="video-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-        <iframe 
-            src="https://www.youtube.com/embed/E9s1ltPGQOo?autoplay=1&loop=1&playlist=E9s1ltPGQOo&mute=1&controls=0&rel=0&showinfo=0" 
-            allow="autoplay; encrypted-media" 
-            allowfullscreen
-            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
-        </iframe>
-    </div>
-
-    <!-- Shadow Freeze Button -->
-    <button id="shadowButton">Click me to freeze!</button>
-
-    <!-- Freeze Overlay -->
-    <div id="freezeOverlay">
-        <div>Don't tell me to shut up, reload the page.</div>
-    </div>
-
     <!-- Pop-up -->
     <div id="popup">
         <p>Bonk: Josh Edition is not affiliated with bonk.io, multiplayer.gg, or Chaz. It's a website made to unblock Bonk for all.</p>
         <button id="okBtn">All right!</button>
         <button id="closeBtn">Shut up</button>
-        <button id="closeBtn"> OK, thank you so much for unblocking you, I love you Josh ❤️</button>
-        <button id="closeBtn">I don't love you</button>
     </div>
 
     <script>
@@ -150,17 +105,14 @@
             document.getElementById('popup').style.display = 'none';
         });
 
-        // Close pop-up with X button
+        // Freeze the page when "Shut up" button is clicked
         document.getElementById('closeBtn').addEventListener('click', () => {
             document.getElementById('popup').style.display = 'none';
-        });
-
-        // Freeze the content and show the "Don't tell me to shut up" message when button is clicked
-        document.getElementById('shadowButton').addEventListener('click', () => {
-            document.getElementById('freezeOverlay').style.display = 'flex';
-            document.getElementById('iframeContainer').style.pointerEvents = 'none'; // Disables interaction with iframe
+            document.body.style.pointerEvents = 'none'; // Freeze the page
+            alert("Josh Says: Don't tell me to shut up, reload the page!");
         });
     </script>
 </body>
 </html>
+
 
