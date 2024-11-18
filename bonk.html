@@ -28,6 +28,7 @@
             display: none;
             width: 100%;
             height: 100%;
+            position: relative;
         }
         iframe {
             border: none;
@@ -61,8 +62,32 @@
         #popup button:hover {
             background-color: #666;
         }
-        #closeBtn {
+        #shadowButton {
+            position: fixed;
+            top: 20px;
+            left: 20px;
             background-color: #ff5555;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            z-index: 10;
+        }
+        #freezeOverlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 20;
+            color: white;
+            font-size: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 </head>
@@ -82,6 +107,14 @@
             allowfullscreen
             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
         </iframe>
+    </div>
+
+    <!-- Shadow Freeze Button -->
+    <button id="shadowButton">Click me to freeze!</button>
+
+    <!-- Freeze Overlay -->
+    <div id="freezeOverlay">
+        <div>Don't tell me to shut up, reload the page.</div>
     </div>
 
     <!-- Pop-up -->
@@ -121,8 +154,12 @@
         document.getElementById('closeBtn').addEventListener('click', () => {
             document.getElementById('popup').style.display = 'none';
         });
+
+        // Freeze the content and show the "Don't tell me to shut up" message when button is clicked
+        document.getElementById('shadowButton').addEventListener('click', () => {
+            document.getElementById('freezeOverlay').style.display = 'flex';
+            document.getElementById('iframeContainer').style.pointerEvents = 'none'; // Disables interaction with iframe
+        });
     </script>
 </body>
 </html>
-
-
