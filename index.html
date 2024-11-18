@@ -1,116 +1,76 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to the new way</title>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: black;
-            color: white;
-            font-family: Arial, sans-serif;
-            font-size: 2rem;
-            text-align: center;
-            position: relative;
-        }
-        #intro {
-            display: block;
-        }
-        #iframeContainer {
-            display: none;
-            width: 100%;
-            height: 100%;
-        }
-        iframe {
-            border: none;
-            width: 100%;
-            height: 100%;
-        }
-        #popup {
-            display: none;
-            position: fixed;
-            top: 30%;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #333;
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            font-size: 1.2rem;
-            width: 80%;
-            max-width: 400px;
-        }
-        #popup button {
-            background-color: #444;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            margin: 10px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        #popup button:hover {
-            background-color: #666;
-        }
-        #closeBtn {
-            background-color: #ff5555;
-        }
-    </style>
-</head>
-<body>
-    <div id="intro">
-        <div id="text1">The teachers tried to stop us</div>
-    </div>
-    <div id="iframeContainer">
-        <iframe src="https://bonkisback.io"></iframe>
-    </div>
-
-    <!-- Pop-up -->
-    <div id="popup">
-        <p>Bonk: Josh Edition is not affiliated with bonk.io, multiplayer.gg, or Chaz. It's a website made to unblock Bonk for all.</p>
-        <button id="okBtn">All right!</button>
-        <button id="closeBtn">Shut up</button>
-    </div>
-
-    <script>
-        setTimeout(() => {
-            document.getElementById('text1').textContent = 'Bonk: Josh Edition (not an official partner with Bonk)';
-        }, 3000);
-
-        setTimeout(() => {
-            document.getElementById('text1').textContent = "Don't ask how I did this, just play WE ARE SOOO BACK!!";
-        }, 5000);
-
-        setTimeout(() => {
-            document.getElementById('intro').style.display = 'none';
-            document.getElementById('iframeContainer').style.display = 'block';
-        }, 7000);
-
-        // After all the messages, show the pop-up
-        setTimeout(() => {
-            document.getElementById('popup').style.display = 'block';
-        }, 8000);
-
-        // Close pop-up with OK button
-        document.getElementById('okBtn').addEventListener('click', () => {
-            document.getElementById('popup').style.display = 'none';
-        });
-
-        // Freeze the page when "Shut up" button is clicked
-        document.getElementById('closeBtn').addEventListener('click', () => {
-            document.getElementById('popup').style.display = 'none';
-            document.body.style.pointerEvents = 'none'; // Freeze the page
-            alert("Don't tell me to shut up, reload the page!");
-        });
-    </script>
-</body>
-</html>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href='/style.css' rel='stylesheet'>
+  <style>
+    h1 {
+      color: rgb(0, 174, 255);
+    }
+    body {
+      background-color: rgb(0, 0, 0);
+      color: white; /* Set text color to white */
+      font-family: Arial, sans-serif;
+    }
+    .typed-text {
+      width: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      animation: typing 3s steps(30, end) forwards;
+    }
+    @keyframes typing {
+      from {
+        width: 0;
+      }
+      to {
+        width: 100%;
+      }
+    }
+    /* Balcony Section */
+    .balcony {
+      position: relative;
+      width: 80%;
+      margin: 50px auto;
+      background-color: #333;
+      padding: 20px;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    }
+    .balcony h2 {
+      color: #FFFF00;
+      font-size: 24px;
+    }
+    .balcony p {
+      color: #aaa;
+      font-size: 16px;
+    }
+    .balcony img {
+      width: 60%;
+      height: auto;
+      margin-top: 15px;
+    }
+    /* New section for text next to "This is Joshua" */
+    .intro-container {
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+    }
+    .intro-text {
+      color: #FFFF00;
+      font-size: 20px;
+      margin-right: 20px;
+    }
+    .intro-placeholder {
+      color: #aaa;
+      font-size: 16px;
+      max-width: 400px;
+    }
+    .intro-image {
+      width: 50px;
+      height: 50px;
+      margin-left: 20px;
+    }
+  </style>
