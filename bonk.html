@@ -61,7 +61,7 @@
         #popup button:hover {
             background-color: #666;
         }
-        #closeBtn1 {
+        #closeBtn {
             background-color: #ff5555;
         }
     </style>
@@ -74,13 +74,23 @@
         <iframe src="https://bonkisback.io"></iframe>
     </div>
 
+    <!-- YouTube Video -->
+    <div id="video-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+        <iframe 
+            src="https://www.youtube.com/embed/E9s1ltPGQOo?autoplay=1&loop=1&playlist=E9s1ltPGQOo&mute=1&controls=0&rel=0&showinfo=0" 
+            allow="autoplay; encrypted-media" 
+            allowfullscreen
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
+        </iframe>
+    </div>
+
     <!-- Pop-up -->
     <div id="popup">
         <p>Bonk: Josh Edition is not affiliated with bonk.io, multiplayer.gg, or Chaz. It's a website made to unblock Bonk for all.</p>
         <button id="okBtn">All right!</button>
-        <button id="closeBtn1">Shut up</button>
-        <button id="closeBtn2">OK, thank you so much for unblocking you, I love you Josh ❤️</button>
-        <button id="closeBtn3">I don't love you</button>
+        <button id="closeBtn">Shut up</button>
+        <button id="closeBtn"> OK, thank you so much for unblocking you, I love you Josh ❤️</button>
+        <button id="closeBtn">I don't love you</button>
     </div>
 
     <script>
@@ -107,21 +117,12 @@
             document.getElementById('popup').style.display = 'none';
         });
 
-        // Close pop-up with Shut up button
-        document.getElementById('closeBtn1').addEventListener('click', () => {
-            document.getElementById('popup').style.display = 'none';
-        });
-
-        // Close pop-up with "OK, thank you..." button
-        document.getElementById('closeBtn2').addEventListener('click', () => {
-            document.getElementById('popup').style.display = 'none';
-        });
-
-        // Close pop-up with "I don't love you" button
-        document.getElementById('closeBtn3').addEventListener('click', () => {
+        // Close pop-up with X button
+        document.getElementById('closeBtn').addEventListener('click', () => {
             document.getElementById('popup').style.display = 'none';
         });
     </script>
 </body>
 </html>
+
 
