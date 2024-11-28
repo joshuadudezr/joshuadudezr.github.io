@@ -5,51 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hi, I'm Josh!</title>
     <style>
-        /* Set the background image */
+        /* Ensure the background image works */
         body {
             background-image: url('bb.png'); /* Ensure bb.png is in the same folder as this HTML file */
             background-size: cover; 
             background-position: center;
             background-attachment: fixed;
-            color: white;
-            font-family: Arial, sans-serif;
+            margin: 0;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            text-align: center;
+            color: white;
+            font-family: Arial, sans-serif;
         }
 
         .content {
-            background: rgba(0, 0, 0, 0.5); /* Dark semi-transparent background */
+            background: rgba(0, 0, 0, 0.6); /* Dark semi-transparent background for readability */
             padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
         }
 
         h1 {
             font-size: 3em;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         p {
             font-size: 1.5em;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
-        button {
-            padding: 10px 20px;
+        .button {
+            padding: 15px 30px;
             font-size: 1.2em;
-            background-color: #4CAF50;
             color: white;
+            background-color: #4CAF50;
             border: none;
             border-radius: 5px;
-            cursor: pointer;
             text-decoration: none;
+            cursor: pointer;
         }
 
-        button:hover {
+        .button:hover {
             background-color: #45a049;
         }
     </style>
@@ -57,10 +56,8 @@
 <body>
     <div class="content">
         <h1>Hi, I'm Josh!</h1>
-        <p>I do coding sometimes and play games</p>
-        <a href="mailto:Josh@JoshRyan.fyi">
-            <button>Talk to Me</button>
-        </a>
+        <p>I do coding sometimes and play games.</p>
+        <a href="mailto:Josh@JoshRyan.fyi" class="button">Talk to Me</a>
     </div>
 </body>
 </html>
