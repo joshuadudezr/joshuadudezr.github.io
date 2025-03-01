@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTTP Request Simulator</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f5f8fa;
+    }
+    
+    h1, h2 {
+      color: #2c3e50;
+    }
+    
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    
+    .panel {
+      flex: 1 1 400px;
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .form-group {
+      margin-bottom: 15px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    
+    input, textarea, select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    
+    .param-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    
+    .param-group input {
+      flex: 1;
+    }
+    
+    button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.2s;
+    }
+    
+    button:hover {
+      background-color: #2980b9;
+    }
+    
+    .add-btn {
+      background-color: #2ecc71;
+    }
+    
+    .add-btn:hover {
+      background-color: #27ae60;
+    }
+    
+    .remove-btn {
+      background-color: #e74c3c;
+      width: 30px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .remove-btn:hover {
+      background-color: #c0392b;
+    }
+    
+    .response {
+      margin-top: 20px;
+      background-color: #f9f9f9;
+      border-left: 3px solid #3498db;
+      padding: 15px;
+      border-radius: 4px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    
+    .headers {
+      font-family: monospace;
+      margin-bottom: 10px;
+    }
+    
+    .response-body {
+      font-family: monospace;
+      white-space: pre-wrap;
+    }
+    
+    .tabs {
+      display: flex;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 15px;
+    }
+    
+    .tab {
+      padding: 8px 15px;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+    }
+    
+    .tab.active {
+      border-bottom: 2px solid #3498db;
+      font-weight: bold;
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    .statusCode {
+      display: inline-block;
+      padding: 3px 6px;
+      border-radius: 3px;
+      font-weight: bold;
+    }
+    
+    .status-2xx {
+      background-color: #d5f5e3;
+      color: #27ae60;
+    }
+    
+    .status-3xx {
+      background-color: #fef9e7;
+      color: #f39c12;
+    }
+    
+    .status-4xx, .status-5xx {
+      background-color: #fadbd8;
+      color: #e74c3c;
+    }
+  </style>
+</head>
+<body>
+  <h1>HTTP Request Simulator</h1>
+  <p>Test GET and POST requests to any endpoint that supports CORS.</p>
+  
+  <div class="container">
+    <div class="panel">
+      <div class="tabs">
+        <div class="tab active" data-tab="get">GET Request</div>
+        <div class="tab" data-tab="post">POST Request</div>
+      </div>
+      
+      <div class="tab-content active" id="get-tab">
+        <form id="get-form">
+          <div class="form-group">
+            <label for="get-url">URL:</label>
+            <input type="url" id="get-url" placeholder="https://example.com/api" required>
+          </div>
+          
+          <div class="form-group">
+            <label>Headers:</label>
+            <div id="get-headers">
+              <div class="param-group">
+                <input type="text" placeholder="Name" class="header-name">
+                <input type="text" placeholder="Value" class="header-value">
+                <button type="button" class="remove-btn">×</button>
+              </div>
+            </div>
+            <button type="button" id="add-get-header" class="add-btn">Add Header</button>
+          </div>
+          
+          <div class="form-group">
+            <label>Query Parameters:</label>
+            <div id="get-params">
+              <div class="param-group">
+                <input type="text" placeholder="Name" class="param-name">
+                <input type="text" placeholder="Value" class="param-value">
+                <button type="button" class="remove-btn">×</button>
+              </div>
+            </div>
+            <button type="button" id="add-get-param" class="add-btn">Add Parameter</button>
+          </div>
+          
+          <button type="submit">Send GET Request</button>
+        </form>
+      </div>
+      
+      <div class="tab-content" id="post-tab">
+        <form id="post-form">
+          <div class="form-group">
+            <label for="post-url">URL:</label>
+            <input type="url" id="post-url" placeholder="https://example.com/api" required>
+          </div>
+          
+          <div class="form-group">
+            <label>Headers:</label>
+            <div id="post-headers">
+              <div class="param-group">
+                <input type="text" placeholder="Name" class="header-name" value="Content-Type">
+                <input type="text" placeholder="Value" class="header-value" value="application/json">
+                <button type="button" class="remove-btn">×</button>
+              </div>
+            </div>
+            <button type="button" id="add-post-header" class="add-btn">Add Header</button>
+          </div>
+          
+          <div class="form-group">
+            <label for="post-body">Request Body (JSON):</label>
+            <textarea id="post-body" rows="5" placeholder='{"key": "value"}'></textarea>
+          </div>
+          
+          <button type="submit">Send POST Request</button>
+        </form>
+      </div>
+    </div>
+    
+    <div class="panel">
+      <h2>Response</h2>
+      <div id="response" class="response">
+        <p>No request sent yet. Use the form to send a request.</p>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // Tab functionality
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        
+        tab.classList.add('active');
+        document.getElementById(`${tab.dataset.tab}-tab`).classList.add('active');
+      });
+    });
+    
+    // Add/remove parameter groups
+    function setupParamButtons(addButtonId, containerId) {
+      document.getElementById(addButtonId).addEventListener('click', () => {
+        const container = document.getElementById(containerId);
+        const newGroup = document.createElement('div');
+        newGroup.className = 'param-group';
+        newGroup.innerHTML = `
+          <input type="text" placeholder="Name" class="${containerId === 'get-params' || containerId === 'post-params' ? 'param-name' : 'header-name'}">
+          <input type="text" placeholder="Value" class="${containerId === 'get-params' || containerId === 'post-params' ? 'param-value' : 'header-value'}">
+          <button type="button" class="remove-btn">×</button>
+        `;
+        container.appendChild(newGroup);
+        
+        newGroup.querySelector('.remove-btn').addEventListener('click', () => {
+          container.removeChild(newGroup);
+        });
+      });
+      
+      // Setup initial remove buttons
+      document.querySelectorAll(`#${containerId} .remove-btn`).forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (btn.parentElement.parentElement.children.length > 1) {
+            btn.parentElement.parentElement.removeChild(btn.parentElement);
+          } else {
+            btn.parentElement.querySelectorAll('input').forEach(input => input.value = '');
+          }
+        });
+      });
+    }
+    
+    setupParamButtons('add-get-param', 'get-params');
+    setupParamButtons('add-get-header', 'get-headers');
+    setupParamButtons('add-post-header', 'post-headers');
+    
+    // Handle GET form submission
+    document.getElementById('get-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      try {
+        // Prepare URL with query parameters
+        let url = document.getElementById('get-url').value;
+        const urlObj = new URL(url);
+        
+        // Add query parameters
+        document.querySelectorAll('#get-params .param-group').forEach(group => {
+          const nameInput = group.querySelector('.param-name');
+          const valueInput = group.querySelector('.param-value');
+          
+          if (nameInput.value) {
+            urlObj.searchParams.append(nameInput.value, valueInput.value);
+          }
+        });
+        
+        // Prepare headers
+        const headers = new Headers();
+        document.querySelectorAll('#get-headers .param-group').forEach(group => {
+          const nameInput = group.querySelector('.header-name');
+          const valueInput = group.querySelector('.header-value');
+          
+          if (nameInput.value) {
+            headers.append(nameInput.value, valueInput.value);
+          }
+        });
+        
+        // Show loading state
+        document.getElementById('response').innerHTML = '<p>Loading...</p>';
+        
+        // Send request
+        const response = await fetch(urlObj.toString(), {
+          method: 'GET',
+          headers: headers,
+        });
+        
+        // Process response
+        const statusClass = response.status >= 200 && response.status < 300 ? 'status-2xx' : 
+                           response.status >= 300 && response.status < 400 ? 'status-3xx' : 
+                           response.status >= 400 && response.status < 500 ? 'status-4xx' : 'status-5xx';
+        
+        let responseText;
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+          const json = await response.json();
+          responseText = JSON.stringify(json, null, 2);
+        } else {
+          responseText = await response.text();
+        }
+        
+        // Display response
+        const headerEntries = [...response.headers.entries()];
+        const headersHTML = headerEntries.map(([key, value]) => `<div>${key}: ${value}</div>`).join('');
+        
+        document.getElementById('response').innerHTML = `
+          <h3>Status: <span class="statusCode ${statusClass}">${response.status} ${response.statusText}</span></h3>
+          <div class="headers">
+            <h4>Headers:</h4>
+            ${headersHTML}
+          </div>
+          <h4>Body:</h4>
+          <div class="response-body">${escapeHtml(responseText)}</div>
+        `;
+      } catch (error) {
+        document.getElementById('response').innerHTML = `
+          <h3>Error:</h3>
+          <div class="response-body">${error.message}</div>
+          <p>Note: Some requests may fail due to CORS restrictions. The target server must allow requests from your origin.</p>
+        `;
+      }
+    });
+    
+    // Handle POST form submission
+    document.getElementById('post-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      try {
+        // Get URL
+        const url = document.getElementById('post-url').value;
+        
+        // Prepare headers
+        const headers = new Headers();
+        document.querySelectorAll('#post-headers .param-group').forEach(group => {
+          const nameInput = group.querySelector('.header-name');
+          const valueInput = group.querySelector('.header-value');
+          
+          if (nameInput.value) {
+            headers.append(nameInput.value, valueInput.value);
+          }
+        });
+        
+        // Get body
+        const body = document.getElementById('post-body').value;
+        
+        // Show loading state
+        document.getElementById('response').innerHTML = '<p>Loading...</p>';
+        
+        // Send request
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: headers,
+          body: body,
+        });
+        
+        // Process response
+        const statusClass = response.status >= 200 && response.status < 300 ? 'status-2xx' : 
+                           response.status >= 300 && response.status < 400 ? 'status-3xx' : 
+                           response.status >= 400 && response.status < 500 ? 'status-4xx' : 'status-5xx';
+        
+        let responseText;
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+          const json = await response.json();
+          responseText = JSON.stringify(json, null, 2);
+        } else {
+          responseText = await response.text();
+        }
+        
+        // Display response
+        const headerEntries = [...response.headers.entries()];
+        const headersHTML = headerEntries.map(([key, value]) => `<div>${key}: ${value}</div>`).join('');
+        
+        document.getElementById('response').innerHTML = `
+          <h3>Status: <span class="statusCode ${statusClass}">${response.status} ${response.statusText}</span></h3>
+          <div class="headers">
+            <h4>Headers:</h4>
+            ${headersHTML}
+          </div>
+          <h4>Body:</h4>
+          <div class="response-body">${escapeHtml(responseText)}</div>
+        `;
+      } catch (error) {
+        document.getElementById('response').innerHTML = `
+          <h3>Error:</h3>
+          <div class="response-body">${error.message}</div>
+          <p>Note: Some requests may fail due to CORS restrictions. The target server must allow requests from your origin.</p>
+        `;
+      }
+    });
+    
+    // Helper function to escape HTML
+    function escapeHtml(html) {
+      const div = document.createElement('div');
+      div.textContent = html;
+      return div.innerHTML;
+    }
+  </script>
+</body>
+</html>
