@@ -1,5 +1,33 @@
-<h1>error 404<h1/>
-<h4> ok </h4>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Woah woah woah here</title>
+</head>
+<body>
 
-  
+    <script>
+        // Automatically runs the browser-level prompt when the website loads
+        window.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Customize your text inside the quotes below:
+            let userChoice = confirm("woah woah waah here, you are not on the correct page, because this page does not exist. Press "ok" to go to the main page.");
+            
+            // 2. If the user clicks "OK" (true), redirect them
+            if (userChoice) {
+                // Change the URL below to whatever website you want to send them to:
+                window.location.href = "Https://www.Joshryan.fyi";
+            } else {
+                // Optional: What happens if they click "Cancel"
+                console.log("user is annoying and stays on the main page");
+                console.log("Page will close");
+            
 
+                myWindow.close();
+            }
+            
+        });
+    </script>
+
+</body>
+</html>
