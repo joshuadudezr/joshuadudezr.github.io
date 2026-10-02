@@ -7,10 +7,12 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
 body{font-family:'Google Sans',sans-serif;line-height:1.5;overflow-wrap:anywhere}
-header{display:flex;justify-content:space-between;align-items:baseline;gap:1rem}
+header,.contact{display:flex;justify-content:space-between;align-items:baseline;gap:1rem}
 h1{flex:1;min-width:0;font-size:clamp(2rem,8vw,3rem);line-height:1.2}
 h1:last-child{text-align:right}
 a{display:inline-block;padding-block:.5rem}
+.contact>*{flex:1;min-width:0}
+.contact span{text-align:right}
 </style>
 </head>
 <body>
@@ -19,6 +21,9 @@ a{display:inline-block;padding-block:.5rem}
 <h1>Josh</h1>
 <h1>Ryan</h1>
 </header>
+<div class="contact">
 <a href="mailto:Josh@joshryan.fyi">Josh@JoshRyan.fyi</a>
+<span>@joshryan.fyi</span>
+</div>
 </body>
 </html>

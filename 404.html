@@ -1,33 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Woah woah woah here</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Woah woah woah here</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
+body{font-family:'Google Sans',sans-serif;line-height:1.5;overflow-wrap:anywhere}
+h1{font-size:clamp(2rem,8vw,3rem);line-height:1.2}
+a{display:inline-block;padding-block:.5rem}
+</style>
 </head>
 <body>
-
-    <script>
-        // Automatically runs the browser-level prompt when the website loads
-        window.addEventListener('DOMContentLoaded', () => {
-            
-            // 1. Customize your text inside the quotes below:
-            let userChoice = confirm("woah woah waah here, you are not on the correct page, because this page does not exist. Press "ok" to go to the main page.");
-            
-            // 2. If the user clicks "OK" (true), redirect them
-            if (userChoice) {
-                // Change the URL below to whatever website you want to send them to:
-                window.location.href = "Https://www.Joshryan.fyi";
-            } else {
-                // Optional: What happens if they click "Cancel"
-                console.log("user is annoying and stays on the main page");
-                console.log("Page will close");
-            
-
-                myWindow.close();
-            }
-            
-        });
-    </script>
-
+<h1>404</h1>
+<p>Woah woah woah here. This page doesn't exist.</p>
+<a href="/">Go to the main page</a>
+<script>
+if(confirm('Woah woah woah here, this page does not exist. Press "OK" to go to the main page.')) location.replace('/');
+</script>
 </body>
 </html>
