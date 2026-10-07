@@ -13,6 +13,15 @@ h1:last-child{text-align:right}
 a{display:inline-block;padding-block:.5rem}
 .contact>*{flex:1;min-width:0}
 .contact>:last-child{text-align:right}
+
+.josh-art{position:relative;margin:3rem auto 1rem;max-width:52rem;background:#fff;overflow:hidden}
+.josh-art svg{display:block;width:100%;height:auto}
+.josh-art text{font:800 19px monospace;letter-spacing:1px;fill:#000;animation:josh-flash 4s ease-in-out infinite;animation-delay:var(--delay)}
+@keyframes josh-flash{0%,65%,100%{opacity:.25}30%{opacity:1}}
+.josh-art button{display:block;margin:0 1rem 1rem auto;padding:.4rem .7rem;border:1px solid #000;border-radius:3px;background:transparent;color:#000;font:inherit;font-size:.8rem;cursor:pointer}
+.josh-art button:focus-visible{outline:2px solid #000;outline-offset:3px}
+.josh-art.paused text{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){.josh-art.paused text{animation:none;opacity:1}}
 </style>
 </head>
 <body>
@@ -25,5 +34,37 @@ a{display:inline-block;padding-block:.5rem}
 <a href="mailto:Josh@joshryan.fyi">Josh@JoshRyan.fyi</a>
 <a href="mailto:Josh@joshryan.fyi">Josh@JoshRyan.fyi</a>
 </div>
+<!-- Edit JOSH below to change the words making up the J. -->
+<section class="josh-art" aria-label="Animated J made of the word Josh">
+<svg viewBox="0 0 720 450" role="img" aria-labelledby="josh-title">
+<title id="josh-title">A giant letter J made of pulsing JOSH words</title>
+<g aria-hidden="true">
+<text x="48" y="48" style="--delay:-0.00s">JOSH</text><text x="126" y="48" style="--delay:-0.16s">JOSH</text><text x="204" y="48" style="--delay:-0.32s">JOSH</text><text x="282" y="48" style="--delay:-0.48s">JOSH</text><text x="360" y="48" style="--delay:-0.64s">JOSH</text><text x="438" y="48" style="--delay:-0.80s">JOSH</text><text x="516" y="48" style="--delay:-0.96s">JOSH</text><text x="594" y="48" style="--delay:-1.12s">JOSH</text>
+<text x="48" y="84" style="--delay:-0.24s">JOSH</text><text x="126" y="84" style="--delay:-0.40s">JOSH</text><text x="204" y="84" style="--delay:-0.56s">JOSH</text><text x="282" y="84" style="--delay:-0.72s">JOSH</text><text x="360" y="84" style="--delay:-0.88s">JOSH</text><text x="438" y="84" style="--delay:-1.04s">JOSH</text><text x="516" y="84" style="--delay:-1.20s">JOSH</text><text x="594" y="84" style="--delay:-1.36s">JOSH</text>
+<text x="516" y="120" style="--delay:-1.44s">JOSH</text><text x="594" y="120" style="--delay:-1.60s">JOSH</text>
+<text x="516" y="156" style="--delay:-1.68s">JOSH</text><text x="594" y="156" style="--delay:-1.84s">JOSH</text>
+<text x="516" y="192" style="--delay:-1.92s">JOSH</text><text x="594" y="192" style="--delay:-2.08s">JOSH</text>
+<text x="516" y="228" style="--delay:-2.16s">JOSH</text><text x="594" y="228" style="--delay:-2.32s">JOSH</text>
+<text x="48" y="264" style="--delay:-1.44s">JOSH</text><text x="126" y="264" style="--delay:-1.60s">JOSH</text><text x="516" y="264" style="--delay:-2.40s">JOSH</text><text x="594" y="264" style="--delay:-2.56s">JOSH</text>
+<text x="48" y="300" style="--delay:-1.68s">JOSH</text><text x="126" y="300" style="--delay:-1.84s">JOSH</text><text x="516" y="300" style="--delay:-2.64s">JOSH</text><text x="594" y="300" style="--delay:-2.80s">JOSH</text>
+<text x="48" y="336" style="--delay:-1.92s">JOSH</text><text x="126" y="336" style="--delay:-2.08s">JOSH</text><text x="438" y="336" style="--delay:-2.72s">JOSH</text><text x="516" y="336" style="--delay:-2.88s">JOSH</text><text x="594" y="336" style="--delay:-3.04s">JOSH</text>
+<text x="126" y="372" style="--delay:-2.32s">JOSH</text><text x="204" y="372" style="--delay:-2.48s">JOSH</text><text x="282" y="372" style="--delay:-2.64s">JOSH</text><text x="360" y="372" style="--delay:-2.80s">JOSH</text><text x="438" y="372" style="--delay:-2.96s">JOSH</text><text x="516" y="372" style="--delay:-3.12s">JOSH</text>
+<text x="204" y="408" style="--delay:-2.72s">JOSH</text><text x="282" y="408" style="--delay:-2.88s">JOSH</text><text x="360" y="408" style="--delay:-3.04s">JOSH</text><text x="438" y="408" style="--delay:-3.20s">JOSH</text>
+</g>
+</svg>
+<button type="button" id="josh-toggle" aria-pressed="false">Pause animation</button>
+</section>
+<script>
+const art = document.querySelector(".josh-art");
+const toggle = document.querySelector("#josh-toggle");
+function setPaused(paused) {
+  art.classList.toggle("paused", paused);
+  toggle.setAttribute("aria-pressed", String(paused));
+  toggle.textContent = paused ? "Play animation" : "Pause animation";
+}
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+setPaused(reducedMotion.matches);
+toggle.addEventListener("click", () => setPaused(!art.classList.contains("paused")));
+</script>
 </body>
 </html>
